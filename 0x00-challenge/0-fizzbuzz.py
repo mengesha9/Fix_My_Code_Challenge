@@ -1,29 +1,38 @@
 #!/usr/bin/python3
+""" FizzBuzz
 """
-    island_perimeter contains the island perimeter function
-"""
+import sys
 
 
-def island_perimeter(grid):
+def fizzbuzz(n):
     """
-        Returns the perimeter of the island described in grid.
-        Args:
-            grid (list): list of lists
-        Return:
-            perimeter of the island
+    FizzBuzz function prints numbers from 1 to n separated by a space.
+    - For multiples of three print "Fizz" instead of the number and for
+      multiples of five print "Buzz".
+    - For numbers which are multiples of both three and five print "FizzBuzz".
     """
-    wz = 0
-    lz = 1
-    index_list = []
-    perimeter = 0
+    if n < 1:
+        return
 
-    for i in range(len(grid)):
-        for j in range(len(grid[i])):
-            if grid[i][j] is lz:
-                perimeter += 4
-                if i > 0 and grid[i][j - 1]:
-                    perimeter -= 2
-                if j > 0 and grid[i - 1][j]:
-                    perimeter -= 2
+    tmp_result = []
+    for i in range(1, n + 1):
+        if (i % 3) == 0 and (i % 5) == 0:
+            tmp_result.append("FizzBuzz")
+        elif (i % 3) == 0:
+            tmp_result.append("Fizz")
+        elif (i % 5) == 0:
+            tmp_result.append("Buzz")
+        else:
+            tmp_result.append(str(i))
+    print(" ".join(tmp_result))
 
-    return perimeter
+
+if __name__ == '__main__':
+    if len(sys.argv) <= 1:
+        print("Missing number")
+        print("Usage: ./0-fizzbuzz.py <number>")
+        print("Example: ./0-fizzbuzz.py 89")
+        sys.exit(1)
+
+    number = int(sys.argv[1])
+    fizzbuzz(number)
